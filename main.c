@@ -55,6 +55,8 @@ int main() {
   raw();
   keypad(stdscr, TRUE);
   noecho();
+  cbreak();
+  timeout(5000);
 
   if (has_colors() == FALSE) {
     endwin();
@@ -65,11 +67,17 @@ int main() {
   start_color();
   init_pair(1, COLOR_GREEN, COLOR_BLACK);
 
-  update_scr(2300, 2343, 200, 215, 38, 42, 37, 41);
+  while(1) {
+    update_scr(2300, 2343, 200, 215, 38, 42, 37, 41);
+    refresh();
 
-  refresh();
-  getch();
-  endwin();
+    int a = getch();
+    switch (a) {
+      case 'q':
+        endwin();
+        exit(1);
+    }
+  }
 
   return 0;
 }
