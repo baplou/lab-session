@@ -42,6 +42,8 @@ void update_scr(int kills1, int kills2, int wins1, int wins2, int losses1, int l
     attron(COLOR_PAIR(1));
     mvprintw(5, 14, "%.2f", winloss);
     attroff(COLOR_PAIR(1));
+  } else {
+    mvprintw(5, 0, " Session WL: %.2f", winloss);
   }
 
   mvprintw(6, 0, " ");
